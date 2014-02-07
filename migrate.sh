@@ -7,11 +7,11 @@ mysql -uroot -p -h $NEW_DB_SERVER -e"GRANT ALL PRIVILEGES ON $NEW_DB_NAME.* TO $
 
 wget http://ftp.drupal.org/files/projects/drupal-6.30.zip -O /tmp/drupal-6.30.zip
 unzip /tmp/drupal-6.30.zip -d /var/www/
-mv /var/www/drupal-6.30 /var/www/forums
+mv /var/www/drupal-6.30 /var/www/domains/dev/forums
 
-rsync -avz --progress -e 'ssh -p22'  root@$OLD_WEBSERVER_NAME:/var/www/forums/files /var/www/forums/files
+rsync -avz --progress -e 'ssh -p22'  root@$OLD_WEBSERVER_NAME:/var/www/domains/wavemaker.com/dev/public_html/forums1/files /var/www/domains/dev/forums/files
 
-scp $SCRIPT_BASE/files/drupal6.30/settings.php  /var/www/forums/sites/default/
+scp $SCRIPT_BASE/files/drupal6.30/settings.php  /var/www/domains/dev/forums/sites/default/
 
 scp $SCRIPT_BASE/includes/updated.sh root@$OLD_WEBSERVER_NAME:/tmp/
 
@@ -24,9 +24,9 @@ ssh root@$OLD_WEBSERVER_NAME bash /tmp/updated.sh
 
  		 ssh root@$OLD_WEBSERVER_NAME wget http://ftp.drupal.org/files/projects/drupal-5.23.zip -O /tmp/drupal5.23.zip
  		 ssh root@$OLD_WEBSERVER_NAME unzip /tmp/drupal5.23.zip -d /var/www/
- 		 ssh root@$OLD_WEBSERVER_NAME mv /var/www/drupal-5.23 /var/www/forums2
+ 		 ssh root@$OLD_WEBSERVER_NAME mv /var/www/drupal-5.23 /var/www/domains/wavemaker.com/dev/public_html/forums2
 
- 		 scp $SCRIPT_BASE/files/drupal5.23/settings.php root@$OLD_WEBSERVER_NAME:/var/www/forums2/sites/default/
+ 		 scp $SCRIPT_BASE/files/drupal5.23/settings.php root@$OLD_WEBSERVER_NAME:/var/www/domains/wavemaker.com/dev/public_html/forums2/sites/default
  		 echo "Run setttings.php in your Browser"
  		 read ans1
 
@@ -41,7 +41,7 @@ ssh root@$OLD_WEBSERVER_NAME bash /tmp/updated.sh
 
  		 	if [ $ans3 == 'yes' ]
  		 		then
- 		 		cd /var/www/forums
+ 		 		cd /var/www/domains/dev/forums
  		 		bash $SCRIPT_BASE/includes/updated6x.sh
 
  		 	fi
